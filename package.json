@@ -2,7 +2,7 @@
   "name": "pidaagenda",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000P\u0000I\u0000d\u0000a\u0000A\u0000g\u0000e\u0000n\u0000d\u0000a\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "main": "db.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",

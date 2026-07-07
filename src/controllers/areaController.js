@@ -1,10 +1,10 @@
-const userService = require("../services/userService");
+const areaService = require("../services/areaService");
 
-class userController {
+class areaController {
     static async getAll(req, res) {
         try {
-            const users = await userService.getAllUsers();
-            res.json(users);
+            const areas = await areaService.getAllAreas();
+            res.json(areas);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -12,8 +12,8 @@ class userController {
 
     static async create(req, res) {
         try {
-            const id = await userService.createUser(req.body);
-            res.status(201).json({ message: `Usuário criado com sucesso.`, id });
+            const id = await areaService.createArea(req.body);
+            res.status(201).json({ message: `Área criada com sucesso.`, id });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -22,8 +22,8 @@ class userController {
     static async update(req, res) {
         try {
             const id = req.params.id;
-            await userService.updateUser(id, req.body);
-            res.json({ message: `Usuário atualizado com sucesso.` });
+            await areaService.updateArea(id, req.body);
+            res.json({ message: `Área atualizada com sucesso.` });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -32,12 +32,12 @@ class userController {
     static async delete(req, res) {
         try {
             const id = req.params.id;
-            await userService.deleteUser(id);
-            res.json({ message: `Usuário deletado com sucesso.` });
+            await areaService.deleteArea(id);
+            res.json({ message: `Área deletada com sucesso.` });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     }
 }
 
-module.exports = userController;
+module.exports = areaController;

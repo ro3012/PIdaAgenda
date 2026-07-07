@@ -1,0 +1,52 @@
+@BASE = http://localhost:3000
+@ID_DO_SERVICO = 1
+
+
+### Listar todos os serviços
+GET {{BASE}}/servicos
+Accept: application/json
+
+### Listar serviços por área
+GET {{BASE}}/servicos/area/1
+Accept: application/json
+
+### Criar um novo serviço
+POST {{BASE}}/servicos
+Content-Type: application/json
+
+{
+    "area_id": "1",
+    "nomeServico": "Corte de Cabelo Masculino",
+    "duracao_min": "30",
+    "preco": "25.00"
+}
+
+### Atualizar um serviço existente
+PUT {{BASE}}/servicos/{{ID_DO_SERVICO}}
+Content-Type: application/json
+
+{
+    "area_id": "1",
+    "nomeServico": "Unhas de Gel com Nail Art",
+    "duracao_min": "30",
+    "preco": "30.00"
+}
+
+### Atualizar um serviço inexistente
+PUT {{BASE}}/servicos/{{ID_DO_SERVICO}}
+Content-Type: application/json
+
+{
+    "area_id": "999",
+    "nomeServico": "Serviço Inexistente",
+    "duracao_min": "30",
+    "preco": "30.00"
+}
+
+### Deletar um serviço
+DELETE {{BASE}}/servicos/{{ID_DO_SERVICO}}
+Accept: application/json
+
+### Deletar um serviço inexistente
+DELETE {{BASE}}/servicos/999
+Accept: application/json    

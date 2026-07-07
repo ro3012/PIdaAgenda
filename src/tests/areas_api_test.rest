@@ -1,0 +1,52 @@
+@BASE = http://localhost:3000
+@ID_DA_AREA = 2
+
+### Listar todas as áreas
+GET {{BASE}}/areas
+Accept: application/json
+
+### Criar uma nova área
+POST {{BASE}}/areas
+Content-Type: application/json
+
+{
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Área dedicada a serviços de cabeleireiro."
+}
+
+### Criar uma nova área repetida
+POST {{BASE}}/areas
+Content-Type: application/json
+
+{
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Teste Área Repetida"
+}
+
+### Atualizar uma área existente
+PUT {{BASE}}/areas/{{ID_DA_AREA}}
+Content-Type: application/json
+
+{
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Área dedicada a serviços de cabeleireiro.",
+    "ativo": "1"
+}
+
+### Atualizar uma área inexistente
+PUT {{BASE}}/areas/999
+Content-Type: application/json
+
+{
+    "nomeArea": "Área Inexistente",
+    "descricaoArea": "Teste Área Inexistente.",
+    "ativo": "1"
+}
+
+### Deletar uma área
+DELETE {{BASE}}/areas/{{ID_DA_AREA}}
+Accept: application/json
+
+### Deletar uma área inexistente
+DELETE {{BASE}}/areas/999
+Accept: application/json    

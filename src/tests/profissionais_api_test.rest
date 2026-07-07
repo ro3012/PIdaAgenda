@@ -1,0 +1,47 @@
+@BASE = http://localhost:3000
+@ID_DO_PROFISSIONAL = 1
+
+### Listar todos os profissionais
+GET {{BASE}}/profissionais
+Accept: application/json
+
+### Criar um novo profissional
+POST {{BASE}}/profissionais
+Content-Type: application/json
+
+{
+    "nomeProfissional": "Maria Silva Soares",
+    "especialidade": "Manicure",
+    "telefone": "54 99999-8888",
+    "ativo": "1"
+}
+
+### Atualizar um profissional existente
+PUT {{BASE}}/profissionais/{{ID_DO_PROFISSIONAL}}
+Content-Type: application/json
+
+{
+    "nomeProfissional": "Julia Silva",
+    "especialidade": "Maquiadora",
+    "telefone": "54 99999-8888",
+    "ativo": "1"
+}
+
+### Atualizar um profissional inexistente
+PUT {{BASE}}/profissionais/999
+Content-Type: application/json
+
+{
+    "nomeProfissional": "Profissional Inexistente",
+    "especialidade": "Maquiadora",
+    "telefone": "54 99999-8888",
+    "ativo": "1"
+}
+
+### Deletar um profissional
+DELETE {{BASE}}/profissionais/{{ID_DO_PROFISSIONAL}}
+Accept: application/json
+
+### Deletar um profissional inexistente
+DELETE {{BASE}}/profissionais/999
+Accept: application/json    
