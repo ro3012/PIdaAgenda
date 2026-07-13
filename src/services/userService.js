@@ -8,10 +8,10 @@ class userService {
     }
 
     static async createUser(user) {
-        if (!validateEmail(user.emailUsuario)) {
+        if (!validateEmail(user.email)) {
             throw new Error("Formato de e-mail inválido.");
         }
-        const existingUser = await userModel.findByEmail(user.emailUsuario);
+        const existingUser = await userModel.findByEmail(user.email);
         if (existingUser) {
             throw new Error("E-mail já cadastrado.");
         }

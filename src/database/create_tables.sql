@@ -1,8 +1,8 @@
 -- Usa o banco de dados
-USE agenda_api_db;
+USE db_AgendaProBeauty_api;
 
 -- Cria a tabela de usuários
-CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE IF NOT EXISTS tb_usuarios (
  id INT AUTO_INCREMENT PRIMARY KEY,
  nome VARCHAR(100) NOT NULL,
  email VARCHAR(150) NOT NULL UNIQUE,
@@ -11,19 +11,19 @@ CREATE TABLE IF NOT EXISTS usuarios (
  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS areas (
+CREATE TABLE IF NOT EXISTS tb_areas (
  id INT AUTO_INCREMENT PRIMARY KEY,
  nome VARCHAR(100) NOT NULL,
  descricao VARCHAR(300) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS status_agendamento (
+CREATE TABLE IF NOT EXISTS tb_status_agendamento (
  id INT AUTO_INCREMENT PRIMARY KEY,
  nome VARCHAR(100) NOT NULL,
  descricao VARCHAR(300) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS profissionais (
+CREATE TABLE IF NOT EXISTS tb_profissionais (
  id INT AUTO_INCREMENT PRIMARY KEY,
  nome VARCHAR(100) NOT NULL,
  especialidade VARCHAR(60) NOT NULL,
@@ -31,43 +31,43 @@ CREATE TABLE IF NOT EXISTS profissionais (
  ativo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
-CREATE TABLE IF NOT EXISTS horarios_bloqueados (
+CREATE TABLE IF NOT EXISTS tb_horarios_bloqueados (
  id INT AUTO_INCREMENT PRIMARY KEY,
  profissional_id INT NOT NULL,
- FOREIGN KEY (profissional_id) REFERENCES profissionais(id),
+ FOREIGN KEY (profissional_id) REFERENCES tb_profissionais(id),
  inicio DATETIME NOT NULL,
  fim DATETIME NOT NULL,
  motivo VARCHAR(300) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS horarios_trabalho (
+CREATE TABLE IF NOT EXISTS tb_horarios_trabalho (
  id INT AUTO_INCREMENT PRIMARY KEY,
  profissional_id INT NOT NULL,
- FOREIGN KEY (profissional_id) REFERENCES profissionais(id),
+ FOREIGN KEY (profissional_id) REFERENCES tb_profissionais(id),
  dia_semana int NOT NULL,
  inicio DATETIME NOT NULL,
  fim DATETIME NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS servicos (
+CREATE TABLE IF NOT EXISTS tb_servicos (
  id INT AUTO_INCREMENT PRIMARY KEY,
  area_id INT NOT NULL,
- FOREIGN KEY (area_id) REFERENCES areas(id),
+ FOREIGN KEY (area_id) REFERENCES tb_areas(id),
  nome VARCHAR(100) NOT NULL,
  duracao INT NOT NULL,
  preco decimal NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS agendamentos (
+CREATE TABLE IF NOT EXISTS tb_agendamentos (
  id INT AUTO_INCREMENT PRIMARY KEY,
  usuario_id INT NOT NULL,
- FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+ FOREIGN KEY (usuario_id) REFERENCES tb_usuarios(id),
  profissional_id INT NOT NULL,
- FOREIGN KEY (profissional_id) REFERENCES profissionais(id),
+ FOREIGN KEY (profissional_id) REFERENCES tb_profissionais(id),
  servico_id INT NOT NULL,
- FOREIGN KEY (servico_id) REFERENCES servicos(id),
+ FOREIGN KEY (servico_id) REFERENCES tb_servicos(id),
  status_id INT NOT NULL, 
- FOREIGN KEY (status_id) REFERENCES status_agendamento(id),
+ FOREIGN KEY (status_id) REFERENCES tb_status_agendamento(id),
  inicio DATETIME NOT NULL,
  fim DATETIME NOT NULL,
  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

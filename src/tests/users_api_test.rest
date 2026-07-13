@@ -10,8 +10,8 @@ POST {{BASE}}/users
 Content-Type: application/json
 
 {
-    "nomeUsuario": "Ana Almeida",
-    "emailUsuario": "ana@example.com",
+    "nome": "Ana Almeida",
+    "email": "ana@email.com",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }
@@ -21,8 +21,8 @@ POST {{BASE}}/users
 Content-Type: application/json
 
 {
-    "nomeUsuario": "Teste E-mail Inválido",
-    "emailUsuario": "email_invalido",
+    "nome": "Teste E-mail Inválido",
+    "email": "email_invalido",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }
@@ -32,8 +32,8 @@ POST {{BASE}}/users
 Content-Type: application/json
 
 {
-    "nomeUsuario": "Teste E-mail Repetido",
-    "emailUsuario": "ana@example.com",
+    "nome": "Teste E-mail Repetido",
+    "email": "ana@example.com",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }
@@ -43,8 +43,8 @@ PUT {{BASE}}/users/{{ID_DO_USUARIO}}
 Content-Type: application/json
 
 {
-    "nomeUsuario": "Julio Silva",
-    "emailUsuario": "julio@example.com",
+    "nome": "Julio Silva",
+    "email": "julio@example.com",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }
@@ -54,8 +54,8 @@ PUT {{BASE}}/users/999
 Content-Type: application/json
 
 {
-    "nomeUsuario": "Usuário Inexistente",
-    "emailUsuario": "inexistente@example.com",
+    "nome": "Usuário Inexistente",
+    "email": "inexistente@example.com",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }

@@ -2,23 +2,23 @@ const db = require("../config/database");
 
 class areaModel {
     static async findAll() {
-        const [rows] = await db.query("SELECT * FROM areas");
+        const [rows] = await db.query("SELECT * FROM tb_areas");
         return rows;
     }
 
     static async findById(id) {
-        const [rows] = await db.query("SELECT * FROM areas WHERE id = ?", [id]);
+        const [rows] = await db.query("SELECT * FROM tb_areas WHERE id = ?", [id]);
         return rows[0];
     }
 
     static async findByNome(nomeArea) {
-        const [rows] = await db.query("SELECT * FROM areas WHERE nomeArea = ?", [nomeArea]);
+        const [rows] = await db.query("SELECT * FROM tb_areas WHERE nome = ?", [nomeArea]);
         return rows[0];
     }
 
     static async create(area) {
         const { nomeArea, descricaoArea } = area;
-        const [result] = await db.query("INSERT INTO areas (nomeArea, descricaoArea) VALUES (?, ?)", [nomeArea, descricaoArea]);
+        const [result] = await db.query("INSERT INTO tb_areas (nome, descricao) VALUES (?, ?)", [nomeArea, descricaoArea]);
         return result.insertId;
     }
 
