@@ -10,18 +10,18 @@ POST {{BASE}}/profissionais
 Content-Type: application/json
 
 {
-    "nomeProfissional": "Maria Silva Soares",
+    "nome": "Maria Silva Soares",
     "especialidade": "Manicure",
     "telefone": "54 99999-8888",
     "ativo": "1"
 }
 
 ### Atualizar um profissional existente
-PUT {{BASE}}/profissionais/{{ID_DO_PROFISSIONAL}}
+PUT {{BASE}}/profissionais/5
 Content-Type: application/json
 
 {
-    "nomeProfissional": "Julia Silva",
+    "nome": "Julia Silva",
     "especialidade": "Maquiadora",
     "telefone": "54 99999-8888",
     "ativo": "1"
@@ -32,14 +32,14 @@ PUT {{BASE}}/profissionais/999
 Content-Type: application/json
 
 {
-    "nomeProfissional": "Profissional Inexistente",
+    "nome": "Profissional Inexistente",
     "especialidade": "Maquiadora",
     "telefone": "54 99999-8888",
     "ativo": "1"
 }
 
 ### Deletar um profissional
-DELETE {{BASE}}/profissionais/{{ID_DO_PROFISSIONAL}}
+DELETE {{BASE}}/profissionais/5
 Accept: application/json
 
 ### Deletar um profissional inexistente

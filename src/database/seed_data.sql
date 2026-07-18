@@ -42,9 +42,9 @@ INSERT INTO tb_usuarios (nome, email, senha_hash, perfil) VALUES
 -- HORÁRIOS DE TRABALHO PADRÃO DE SEG A SEX!
 -- Dia da semana 1 = Seg, ... 5 = Sex. 
 INSERT INTO tb_horarios_trabalho (profissional_id, dia_semana, inicio, fim) VALUES 
-(1, 2, '2026-06-16 09:00:00', '2026-06-16 18:00:00'),
-(2, 2, '2026-06-16 09:00:00', '2026-06-16 18:00:00'),
-(3, 2, '2026-06-16 09:00:00', '2026-06-16 18:00:00');
+(1, 2, '09:00:00', '18:00:00'),
+(2, 2, '09:00:00', '18:00:00'),
+(3, 2, '09:00:00', '18:00:00');
 
 -- BLOQUEIO DE HORÁRIO 
 INSERT INTO tb_horarios_bloqueados (profissional_id, inicio, fim, motivo) VALUES 

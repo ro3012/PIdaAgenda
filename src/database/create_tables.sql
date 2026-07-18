@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS tb_horarios_trabalho (
  profissional_id INT NOT NULL,
  FOREIGN KEY (profissional_id) REFERENCES tb_profissionais(id),
  dia_semana int NOT NULL,
- inicio DATETIME NOT NULL,
- fim DATETIME NOT NULL
+ inicio TIME NOT NULL,
+ fim TIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tb_servicos (

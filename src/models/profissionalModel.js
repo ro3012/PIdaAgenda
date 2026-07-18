@@ -6,20 +6,20 @@ class profissionalModel {
         return rows;
     }
 
-    static async findByNome(nomeProfissional) {
-        const [rows] = await db.query("SELECT * FROM tb_profissionais WHERE nomeProfissional = ?", [nomeProfissional]);
+    static async findByNome(nome) {
+        const [rows] = await db.query("SELECT * FROM tb_profissionais WHERE nome = ?", [nome]);
         return rows[0];
     }
 
     static async create(user) {
-        const { nomeProfissional, especialidade, telefone, ativo } = user;
-        const [result] = await db.query("INSERT INTO tb_profissionais (nomeProfissional, especialidade, telefone, ativo) VALUES (?, ?, ?, ?)", [nomeProfissional, especialidade, telefone, ativo]);
+        const { nome, especialidade, telefone, ativo } = user;
+        const [result] = await db.query("INSERT INTO tb_profissionais (nome, especialidade, telefone, ativo) VALUES (?, ?, ?, ?)", [nome, especialidade, telefone, ativo]);
         return result.insertId;
     }
 
     static async update(id, user) {
-        const { nomeProfissional, especialidade, telefone, ativo } = user;
-        const [result] = await db.query("UPDATE tb_profissionais SET nomeProfissional = ?, especialidade = ?, telefone = ?, ativo = ? WHERE id = ?", [nomeProfissional, especialidade, telefone, ativo, id]);
+        const { nome, especialidade, telefone, ativo } = user;
+        const [result] = await db.query("UPDATE tb_profissionais SET nome = ?, especialidade = ?, telefone = ?, ativo = ? WHERE id = ?", [nome, especialidade, telefone, ativo, id]);
         return result.affectedRows;
     }
 

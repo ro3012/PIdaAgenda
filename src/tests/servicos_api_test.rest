@@ -7,7 +7,7 @@ GET {{BASE}}/servicos
 Accept: application/json
 
 ### Listar serviços por área
-GET {{BASE}}/servicos/area/1
+GET {{BASE}}/servicos/area/3
 Accept: application/json
 
 ### Criar um novo serviço
@@ -16,37 +16,47 @@ Content-Type: application/json
 
 {
     "area_id": "1",
-    "nomeServico": "Corte de Cabelo Masculino",
-    "duracao_min": "30",
+    "nome": "Corte de Cabelo Masculino",
+    "duracao": "30",
     "preco": "25.00"
 }
 
 ### Atualizar um serviço existente
-PUT {{BASE}}/servicos/{{ID_DO_SERVICO}}
+PUT {{BASE}}/servicos/7
 Content-Type: application/json
 
 {
     "area_id": "1",
-    "nomeServico": "Unhas de Gel com Nail Art",
-    "duracao_min": "30",
+    "nome": "Unhas de Gel com Nail Art",
+    "duracao": "30",
     "preco": "30.00"
 }
 
 ### Atualizar um serviço inexistente
-PUT {{BASE}}/servicos/{{ID_DO_SERVICO}}
+PUT {{BASE}}/servicos/999
 Content-Type: application/json
 
 {
     "area_id": "999",
-    "nomeServico": "Serviço Inexistente",
-    "duracao_min": "30",
+    "nome": "Serviço Inexistente",
+    "duracao": "30",
     "preco": "30.00"
 }
 
 ### Deletar um serviço
-DELETE {{BASE}}/servicos/{{ID_DO_SERVICO}}
+DELETE {{BASE}}/servicos/8
 Accept: application/json
 
 ### Deletar um serviço inexistente
 DELETE {{BASE}}/servicos/999
-Accept: application/json    
+Accept: application/json
+
+### Teste de campos obrigatórios
+POST {{BASE}}/servicos
+Content-Type: application/json
+
+{
+    "area_id": "1",
+    "nome": "Corte de Cabelo Masculino",
+    "preco": "25.00"
+}

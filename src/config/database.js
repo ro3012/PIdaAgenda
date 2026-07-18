@@ -16,5 +16,5 @@ const pool = mysql.createPool({
  // Limita o número máximo de conexões simultâneas
  queueLimit: 0 
  // Número máximo de requisições enfileiradas (0 = sem limite)
-});
+}); 
 module.exports = pool;

@@ -14,6 +14,8 @@ const areaRoute = require("./routes/areaRoute");
 //
 const servicoRoute = require("./routes/servicoRoute");
 //
+const horarioTrabalhoRoute = require("./routes/horarioTrabalhoRoute");
+//
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // Importa o middleware para tratamento centralizado de erros
 const app = express();
@@ -35,6 +37,7 @@ app.use("/profissionais", profissionalRoute);
 app.use("/areas", areaRoute);
 app.use("/servicos", servicoRoute);
 app.use("/servicos/:area_id", servicoRoute);
+app.use("/horarios", horarioTrabalhoRoute);
 app.use(errorMiddleware);
 // Middleware que captura e trata erros, enviando respostas ao cliente
 module.exports = app;

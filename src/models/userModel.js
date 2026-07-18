@@ -14,14 +14,14 @@ class UserModel {
     }
     //cria um novo usuário
     static async create(user) {
-        const { nome, email } = user;
-        const [result] = await db.query('INSERT INTO tb_usuarios (nome, email) VALUES (?, ?)', [nome, email]);
+        const { nome, email, senha_hash, perfil } = user;
+        const [result] = await db.query('INSERT INTO tb_usuarios (nome, email, senha_hash, perfil) VALUES (?, ?, ?, ?)', [nome, email, senha_hash, perfil]);
         return result.insertId; // Retorna o ID do usuário criado
     }
     // Atualiza um usuário existente
     static async update(id, user) {
-        const { nome, email } = user;
-        const [result] = await db.query('UPDATE tb_usuarios SET nome = ?, email = ? WHERE id = ?', [nome, email, id]);
+        const { nome, email, senha_hash, perfil } = user;
+        const [result] = await db.query('UPDATE tb_usuarios SET nome = ?, email = ?, senha_hash = ?, perfil = ? WHERE id = ?', [nome, email, senha_hash, perfil, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
     // Deleta um usuário pelo ID

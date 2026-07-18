@@ -5,13 +5,17 @@
 GET {{BASE}}/areas
 Accept: application/json
 
+### Listar serviços por área
+GET {{BASE}}/servicos/area/4
+Accept: application/json
+
 ### Criar uma nova área
 POST {{BASE}}/areas
 Content-Type: application/json
 
 {
-    "nomeArea": "Área de Cabeleireiro",
-    "descricaoArea": "Área dedicada a serviços de cabeleireiro."
+    "nome": "Área de Cabeleireiro",
+    "descricao": "Área dedicada a serviços de cabeleireiro."
 }
 
 ### Criar uma nova área repetida
@@ -19,18 +23,17 @@ POST {{BASE}}/areas
 Content-Type: application/json
 
 {
-    "nomeArea": "Área de Cabeleireiro",
-    "descricaoArea": "Teste Área Repetida"
+    "nome": "Área de Cabeleireiro",
+    "descricao": "Teste Área Repetida"
 }
 
 ### Atualizar uma área existente
-PUT {{BASE}}/areas/{{ID_DA_AREA}}
+PUT {{BASE}}/areas/4
 Content-Type: application/json
 
 {
-    "nomeArea": "Área de Cabeleireiro",
-    "descricaoArea": "Área dedicada a serviços de cabeleireiro.",
-    "ativo": "1"
+    "nome": "Área de Cabeleireiro",
+    "descricao": "Área dedicada a serviços da cabeleireira."
 }
 
 ### Atualizar uma área inexistente
@@ -38,13 +41,12 @@ PUT {{BASE}}/areas/999
 Content-Type: application/json
 
 {
-    "nomeArea": "Área Inexistente",
-    "descricaoArea": "Teste Área Inexistente.",
-    "ativo": "1"
+    "nome": "Área Inexistente",
+    "descricao": "Teste Área Inexistente."
 }
 
 ### Deletar uma área
-DELETE {{BASE}}/areas/{{ID_DA_AREA}}
+DELETE {{BASE}}/areas/4
 Accept: application/json
 
 ### Deletar uma área inexistente

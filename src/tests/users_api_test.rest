@@ -61,7 +61,7 @@ Content-Type: application/json
 }
 
 ### Deletar um usuário
-DELETE {{BASE}}/users/{{ID_DO_USUARIO}}
+DELETE {{BASE}}/users/5
 Accept: application/json
 
 ### Deletar um usuário inexistente
