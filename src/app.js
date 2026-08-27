@@ -13,6 +13,7 @@ const horarioTrabalhoRoute = require("./routes/horarioTrabalhoRoute");
 const statusAgendamentoRoute = require("./routes/statusAgendamentoRoute");
 const agendamentoRoute = require("./routes/agendamentoRoute");
 const horarioBloqueadoRoute = require("./routes/horarioBloqueadoRoute");
+const relatorioRoute = require("./routes/relatorioRoute");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/agendamentos/:status_id", agendamentoRoute);
 app.use("/agendamentos/:profissional_id", agendamentoRoute);
 app.use("/agendamentos/disponibilidade", agendamentoRoute);
 app.use("/horarios_bloqueados", horarioBloqueadoRoute);
+app.use("/relatorios", relatorioRoute);
 app.use(errorMiddleware);
 
 module.exports = app;

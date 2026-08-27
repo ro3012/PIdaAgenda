@@ -1,0 +1,14 @@
+@BASE = http://localhost:3000
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Consultar total de agendamentos
+GET {{BASE}}/relatorios/totalAgendamentos
+Authorization: Bearer {{TOKEN}}
+
+### Consultar serviços mais solicitados
+GET {{BASE}}/relatorios/servicosMaisSolicitados
+Authorization: Bearer {{TOKEN}}
+
+### Consultar profissionais mais requisitados
+GET {{BASE}}/relatorios/profissionaisMaisRequisitados
+Authorization: Bearer {{TOKEN}}
