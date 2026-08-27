@@ -1,27 +1,39 @@
 @BASE = http://localhost:3000
-@ID_DO_PROFISSIONAL = 1
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
 
 ### Listar todos os profissionais
 GET {{BASE}}/profissionais
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Criar um novo profissional
 POST {{BASE}}/profissionais
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Maria Silva Soares",
+    "nomeProfissional": "Maria Silva",
     "especialidade": "Manicure",
-    "telefone": "54 99999-8888",
+    "telefone": "54 98888-6666",
     "ativo": "1"
 }
 
 ### Atualizar um profissional existente
-PUT {{BASE}}/profissionais/5
+PUT {{BASE}}/profissionais/1
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Julia Silva",
+    "nomeProfissional": "Maria Silva",
     "especialidade": "Maquiadora",
     "telefone": "54 99999-8888",
     "ativo": "1"
@@ -30,18 +42,21 @@ Content-Type: application/json
 ### Atualizar um profissional inexistente
 PUT {{BASE}}/profissionais/999
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Profissional Inexistente",
+    "nomeProfissional": "Profissional Inexistente",
     "especialidade": "Maquiadora",
     "telefone": "54 99999-8888",
     "ativo": "1"
 }
 
 ### Deletar um profissional
-DELETE {{BASE}}/profissionais/5
+DELETE {{BASE}}/profissionais/1
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Deletar um profissional inexistente
 DELETE {{BASE}}/profissionais/999
-Accept: application/json    
+Accept: application/json
+Authorization: Bearer {{TOKEN}}

@@ -1,0 +1,98 @@
+@BASE = http://localhost:3000
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "ana.silva@email.com",
+    "senha_hash": "senha123"
+}
+
+### Listar todos os agendamentos
+GET {{BASE}}/agendamentos
+Authorization: Bearer {{TOKEN}}
+
+### Listar agendamento por usuário
+GET {{BASE}}/agendamentos/usuario/2
+Authorization: Bearer {{TOKEN}}
+
+### Listar agendamento por profissional
+GET {{BASE}}/agendamentos/profissional/2
+Authorization: Bearer {{TOKEN}}
+
+### Listar agendamento por status
+GET {{BASE}}/agendamentos/status/3
+Authorization: Bearer {{TOKEN}}
+
+### Criar um novo agendamento
+POST {{BASE}}/agendamentos
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "usuario_id": 1,
+    "profissional_id": 3,
+    "servico_id": "2",
+    "status_id": "1",
+    "data_hora_inicio": "2026-08-06 16:30:00",
+    "data_hora_fim": "2026-08-06 17:00:00"
+}
+
+### Atualizar status de um agendamento existente
+PUT {{BASE}}/agendamentos/15
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "usuario_id": 1,
+    "profissional_id": 1,
+    "servico_id": "1",
+    "status_id": "2",
+    "data_hora_inicio": "2026-09-10 16:00:00",
+    "data_hora_fim": "2026-09-10 16:30:00"
+}
+
+### Reagendar um agendamento existente
+PUT {{BASE}}/agendamentos/15
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "usuario_id": 1,
+    "profissional_id": 1,
+    "servico_id": 2,
+    "status_id": 1,
+    "data_hora_inicio": "2026-09-01 13:00:00",
+    "data_hora_fim": "2026-09-01 13:30:00"
+}
+
+### Listar horários disponíveis para um profissional em uma data específica
+GET {{BASE}}/agendamentos/disponibilidade?profissional_id=1&data=2026-07-10
+
+### Cancelar um agendamento existente
+PUT {{BASE}}/agendamentos/18
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "usuario_id": 1,
+    "profissional_id": 3,
+    "servico_id": 2,
+    "status_id": 3,
+    "data_hora_inicio": "2026-08-06 19:30:00",
+    "data_hora_fim": "2026-08-06 20:00:00"
+}
+
+### Listar agendamento por usuário e status
+GET {{BASE}}/agendamentos/usuario/1/status/2
+Authorization: Bearer {{TOKEN}}
+
+### Listar agendamento por profissional e status
+GET {{BASE}}/agendamentos/profissional/3/status/1
+Authorization: Bearer {{TOKEN}}
+
+### Deletar um agendamento existente
+DELETE {{BASE}}/agendamentos/17
+Authorization: Bearer {{TOKEN}}

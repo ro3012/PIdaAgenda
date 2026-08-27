@@ -1,0 +1,52 @@
+@BASE = http://localhost:3000
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Rota pública (acesso livre)
+GET {{BASE}}/public/home
+Content-Type: application/json
+
+### Cadastro de novo usuário
+POST {{BASE}}/auth/register
+Content-Type: application/json
+
+{
+    "nome": "Usuário novo",
+    "email": "novo@ifrs.edu.br",
+    "senha_hash": "senha123",
+    "perfil": "cliente"
+}
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "novo@ifrs.edu.br",
+    "senha_hash": "senha123"
+}
+
+### Login do usuário comum (usuário já existente no banco)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "novo@ifrs.edu.br",
+    "senha_hash": "senha123"
+}
+
+### Login do administrador (usuário já existente no banco)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
+
+### Acesso ao painel (rota protegida, requer token de qualquer usuário autenticado)
+GET {{BASE}}/protected/dashboard
+Authorization: Bearer {{TOKEN}}
+
+### Acesso à área admin (rota protegida, requer token de usuário com perfil "admin")
+GET {{BASE}}/protected/admin
+Authorization: Bearer {{TOKEN}}

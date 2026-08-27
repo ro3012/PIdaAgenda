@@ -1,0 +1,62 @@
+@BASE = http://localhost:3000
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
+
+### Listar todos os horários de trabalho
+GET {{BASE}}/horarios_trabalho
+Accept: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Criar um novo horário de trabalho
+POST {{BASE}}/horarios_trabalho
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "profissional_id": 3,
+    "dia_semana": "1",
+    "hora_inicio": "08:00",
+    "hora_fim": "16:30"
+}
+
+### Atualizar um horário de trabalho existente
+PUT {{BASE}}/horarios_trabalho/2
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "profissional_id": 2,
+    "dia_semana": 5,
+    "hora_inicio": "08:00",
+    "hora_fim": "16:30"
+}
+
+### Atualizar um horário de trabalho inexistente
+PUT {{BASE}}/horarios_trabalho/999
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "profissional_id": 3,
+    "dia_semana": "5",
+    "hora_inicio": "08:00",
+    "hora_fim": "16:30"
+}
+
+### Deletar um horário de trabalho existente
+DELETE {{BASE}}/horarios_trabalho/2
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Deletar um horário de trabalho inexistente
+DELETE {{BASE}}/horarios_trabalho/999
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}

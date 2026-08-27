@@ -1,6 +1,5 @@
 const db = require("../config/database");
 
-
 class areaModel {
     static async findAll() {
         const [rows] = await db.query("SELECT * FROM tb_areas");
@@ -12,20 +11,20 @@ class areaModel {
         return rows[0];
     }
 
-    static async findByNome(nome) {
-        const [rows] = await db.query("SELECT * FROM tb_areas WHERE nome = ?", [nome]);
+    static async findByNome(nomeArea) {
+        const [rows] = await db.query("SELECT * FROM tb_areas WHERE nomeArea = ?", [nomeArea]);
         return rows[0];
     }
 
     static async create(area) {
-        const { nome, descricao } = area;
-        const [result] = await db.query("INSERT INTO tb_areas (nome, descricao) VALUES (?, ?)", [nome, descricao]);
+        const { nomeArea, descricaoArea } = area;
+        const [result] = await db.query("INSERT INTO tb_areas (nomeArea, descricaoArea) VALUES (?, ?)", [nomeArea, descricaoArea]);
         return result.insertId;
     }
 
     static async update(id, area) {
-        const { nome, descricao} = area;
-        const [result] = await db.query("UPDATE tb_areas SET nome = ?, descricao = ? WHERE id = ?", [nome, descricao, id]);
+        const { nomeArea, descricaoArea} = area;
+        const [result] = await db.query("UPDATE tb_areas SET nomeArea = ?, descricaoArea = ? WHERE id = ?", [nomeArea, descricaoArea, id]);
         return result.affectedRows;
     }
 

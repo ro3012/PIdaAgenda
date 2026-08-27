@@ -1,0 +1,2 @@
+npm install bcryptjs cors dotenv express helmet jsonwebtoken mysql2
+

@@ -1,17 +1,29 @@
 @BASE = http://localhost:3000
-@ID_DO_USUARIO = 1
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "email": "roberto.admin@email.com",
+    "senha_hash": "senha123"
+}
 
 ### Listar todos os usuários
 GET {{BASE}}/users
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Criar um novo usuário
 POST {{BASE}}/users
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "nome": "Ana Almeida",
-    "email": "ana@email.com",
+    "email": "ana.almeida2@example.com",
     "senha_hash": "senha123",
     "perfil": "cliente"
 }
@@ -19,6 +31,7 @@ Content-Type: application/json
 ### Criar um novo usuário com email inválido
 POST {{BASE}}/users
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "nome": "Teste E-mail Inválido",
@@ -30,6 +43,7 @@ Content-Type: application/json
 ### Criar um novo usuário com email repetido
 POST {{BASE}}/users
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "nome": "Teste E-mail Repetido",
@@ -39,8 +53,9 @@ Content-Type: application/json
 }
 
 ### Atualizar um usuário existente
-PUT {{BASE}}/users/{{ID_DO_USUARIO}}
+PUT {{BASE}}/users/1
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "nome": "Julio Silva",
@@ -52,6 +67,7 @@ Content-Type: application/json
 ### Atualizar um usuário inexistente
 PUT {{BASE}}/users/999
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "nome": "Usuário Inexistente",
@@ -61,9 +77,11 @@ Content-Type: application/json
 }
 
 ### Deletar um usuário
-DELETE {{BASE}}/users/5
+DELETE {{BASE}}/users/1
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Deletar um usuário inexistente
 DELETE {{BASE}}/users/999
-Accept: application/json    
+Accept: application/json
+Authorization: Bearer {{TOKEN}}  

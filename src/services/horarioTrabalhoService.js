@@ -5,28 +5,28 @@ class horarioTrabalhoService {
         return await horarioTrabalhoModel.findAll();
     }
 
-    static async createHorario(horario) {
-        const existingHorario = await horarioTrabalhoModel.findByDiaSemana(horario.dia_semana);
-        if (existingHorario) {
-            throw new Error("Horário de trabalho já cadastrado.");
+    static async createHorario(horarioTrabalho) {
+        const existingHorarioTrabalho = await horarioTrabalhoModel.findByProfissionalId(horarioTrabalho.profissional_id);
+        if (existingHorarioTrabalho) {
+            throw new Error("Horário de trabalho já cadastrado para este profissional.");
         }
-        return await horarioTrabalhoModel.create(horario);
+        return await horarioTrabalhoModel.create(horarioTrabalho);
     }
 
-    static async updateHorario(id, horario) {
-        const updatedRows = await horarioTrabalhoModel.update(id, horario);
-        if (updatedRows === 0) {
-            throw new Error(`Horário de trabalho não encontrado.`);
+    static async updateHorario(id, horarioTrabalho) {
+        const existingHorarioTrabalho = await horarioTrabalhoModel.findById(id);
+        if (!existingHorarioTrabalho) {
+            throw new Error("Horário de trabalho não encontrado.");
         }
-        return updatedRows;
+        return await horarioTrabalhoModel.update(id, horarioTrabalho);
     }
 
     static async deleteHorario(id) {
-        const deletedRows = await horarioTrabalhoModel.delete(id);
-        if (deletedRows === 0) {
-            throw new Error(`Horário de trabalho não encontrado.`);
+        const existingHorarioTrabalho = await horarioTrabalhoModel.findById(id);
+        if (!existingHorarioTrabalho) {
+            throw new Error("Horário de trabalho não encontrado.");
         }
-        return deletedRows;
+        return await horarioTrabalhoModel.delete(id);
     }
 }
 

@@ -11,20 +11,20 @@ class servicoModel {
         return rows;
     }
 
-    static async findByServico(nome) {
-        const [rows] = await db.query("SELECT * FROM tb_servicos WHERE nome = ?", [nome]);
+    static async findByServico(nomeServico) {
+        const [rows] = await db.query("SELECT * FROM tb_servicos WHERE nomeServico = ?", [nomeServico]);
         return rows[0];
     }
 
     static async create(servico) {
-        const { area_id, nome, duracao, preco } = servico;
-        const [result] = await db.query("INSERT INTO tb_servicos (area_id, nome, duracao, preco) VALUES (?, ?, ?, ?)", [area_id, nome, duracao, preco]);
+        const { area_id, nomeServico, duracao_min, preco } = servico;
+        const [result] = await db.query("INSERT INTO tb_servicos (area_id, nomeServico, duracao_min, preco) VALUES (?, ?, ?, ?)", [area_id, nomeServico, duracao_min, preco]);
         return result.insertId;
     }
 
     static async update(id, servico) {
-        const { area_id, nome, duracao, preco } = servico;
-        const [result] = await db.query("UPDATE tb_servicos SET area_id = ?, nome = ?, duracao = ?, preco = ? WHERE id = ?", [area_id, nome, duracao, preco, id]);
+        const { area_id, nomeServico, duracao_min, preco } = servico;
+        const [result] = await db.query("UPDATE tb_servicos SET area_id = ?, nomeServico = ?, duracao_min = ?, preco = ? WHERE id = ?", [area_id, nomeServico, duracao_min, preco, id]);
         return result.affectedRows;
     }
 

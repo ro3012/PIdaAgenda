@@ -6,27 +6,37 @@ class horarioTrabalhoModel {
         return rows;
     }
 
-    static async findByDiaSemana(dia_semana) {
-        const [rows] = await db.query("SELECT * FROM tb_horarios_trabalho WHERE dia_semana = ?", [dia_semana]);
-        return rows[0];
-    }
-
-    static async create(horario) {
-        const { profissional_id, dia_semana, inicio, fim } = horario;
-        const [result] = await db.query("INSERT INTO tb_horarios_trabalho (profissional_id, dia_semana, inicio, fim) VALUES (?, ?, ?, ?)", [profissional_id, dia_semana, inicio, fim]);
+    static async create(horarioTrabalho) {
+        const { profissional_id, dia_semana, hora_inicio, hora_fim } = horarioTrabalho;
+        const [result] = await db.query("INSERT INTO tb_horarios_trabalho (profissional_id, dia_semana, hora_inicio, hora_fim) VALUES (?, ?, ?, ?)", [profissional_id, dia_semana, hora_inicio, hora_fim]);
         return result.insertId;
     }
 
-    static async update(id, horario) {
-        const { profissional_id, dia_semana, inicio, fim } = horario;
-        const [result] = await db.query("UPDATE tb_horarios_trabalho SET profissional_id = ?, dia_semana = ?, inicio = ?, fim = ? WHERE id = ?", [profissional_id, dia_semana, inicio, fim, id]);
-        return result.affectedRows;
+    static async findByProfissionalId(profissionalId) {
+        const [rows] = await db.query("SELECT * FROM tb_horarios_trabalho WHERE profissional_id = ?", [profissionalId]);
+        return rows[0];
+    }
+
+    static async findByProfissionalAndDia(profissionalId, diaSemana) {
+        const [rows] = await db.query("SELECT * FROM tb_horarios_trabalho WHERE profissional_id = ? AND dia_semana = ?", [profissionalId, diaSemana]);
+        return rows;
+    }
+
+    static async findById(id) {
+        const [rows] = await db.query("SELECT * FROM tb_horarios_trabalho WHERE id = ?", [id]);
+        return rows[0];
+    }
+
+    static async update(id, horarioTrabalho) {
+        const { profissional_id, dia_semana, hora_inicio, hora_fim } = horarioTrabalho;
+        await db.query("UPDATE tb_horarios_trabalho SET profissional_id = ?, dia_semana = ?, hora_inicio = ?, hora_fim = ? WHERE id = ?", [profissional_id, dia_semana, hora_inicio, hora_fim, id]);
+        return await this.findById(id);
     }
 
     static async delete(id) {
-        const [result] = await db.query("DELETE FROM tb_horarios_trabalho WHERE id = ?", [id]);
-        return result.affectedRows;
+        await db.query("DELETE FROM tb_horarios_trabalho WHERE id = ?", [id]);
     }
+
 }
 
 module.exports = horarioTrabalhoModel;

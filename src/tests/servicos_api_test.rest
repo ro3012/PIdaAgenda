@@ -1,62 +1,67 @@
 @BASE = http://localhost:3000
-@ID_DO_SERVICO = 1
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
 
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
 
 ### Listar todos os serviços
 GET {{BASE}}/servicos
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Listar serviços por área
-GET {{BASE}}/servicos/area/3
+GET {{BASE}}/servicos/area/2
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Criar um novo serviço
 POST {{BASE}}/servicos
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "area_id": "1",
-    "nome": "Corte de Cabelo Masculino",
-    "duracao": "30",
+    "nomeServico": "Corte de Cabelo Masculino",
+    "duracao_min": "30",
     "preco": "25.00"
 }
 
 ### Atualizar um serviço existente
-PUT {{BASE}}/servicos/7
+PUT {{BASE}}/servicos/1
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "area_id": "1",
-    "nome": "Unhas de Gel com Nail Art",
-    "duracao": "30",
+    "nomeServico": "Unhas de Gel com Nail Art",
+    "duracao_min": "30",
     "preco": "30.00"
 }
 
 ### Atualizar um serviço inexistente
-PUT {{BASE}}/servicos/999
+PUT {{BASE}}/servicos/1
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "area_id": "999",
-    "nome": "Serviço Inexistente",
-    "duracao": "30",
+    "nomeServico": "Serviço Inexistente",
+    "duracao_min": "30",
     "preco": "30.00"
 }
 
 ### Deletar um serviço
-DELETE {{BASE}}/servicos/8
+DELETE {{BASE}}/servicos/1
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Deletar um serviço inexistente
 DELETE {{BASE}}/servicos/999
 Accept: application/json
-
-### Teste de campos obrigatórios
-POST {{BASE}}/servicos
-Content-Type: application/json
-
-{
-    "area_id": "1",
-    "nome": "Corte de Cabelo Masculino",
-    "preco": "25.00"
-}
+Authorization: Bearer {{TOKEN}}

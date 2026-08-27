@@ -1,54 +1,68 @@
 @BASE = http://localhost:3000
-@ID_DA_AREA = 2
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
 
 ### Listar todas as áreas
 GET {{BASE}}/areas
 Accept: application/json
-
-### Listar serviços por área
-GET {{BASE}}/servicos/area/4
-Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Criar uma nova área
 POST {{BASE}}/areas
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Área de Cabeleireiro",
-    "descricao": "Área dedicada a serviços de cabeleireiro."
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Área dedicada a serviços de cabeleireiro."
 }
 
 ### Criar uma nova área repetida
 POST {{BASE}}/areas
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Área de Cabeleireiro",
-    "descricao": "Teste Área Repetida"
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Teste Área Repetida"
 }
 
 ### Atualizar uma área existente
-PUT {{BASE}}/areas/4
+PUT {{BASE}}/areas/1
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Área de Cabeleireiro",
-    "descricao": "Área dedicada a serviços da cabeleireira."
+    "nomeArea": "Área de Cabeleireiro",
+    "descricaoArea": "Área dedicada a serviços de cabeleireiro.",
+    "ativo": "1"
 }
 
 ### Atualizar uma área inexistente
 PUT {{BASE}}/areas/999
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
-    "nome": "Área Inexistente",
-    "descricao": "Teste Área Inexistente."
+    "nomeArea": "Área Inexistente",
+    "descricaoArea": "Teste Área Inexistente.",
+    "ativo": "1"
 }
 
 ### Deletar uma área
-DELETE {{BASE}}/areas/4
+DELETE {{BASE}}/areas/1
 Accept: application/json
+Authorization: Bearer {{TOKEN}}
 
 ### Deletar uma área inexistente
 DELETE {{BASE}}/areas/999
-Accept: application/json    
+Accept: application/json
+Authorization: Bearer {{TOKEN}}  

@@ -1,58 +1,41 @@
-const express = require('express');
-// Importa o framework Express, utilizado para criar o servidor HTTP e gerenciar rotas
-const cors = require('cors');
-// Importa o middleware que permite o compartilhamento de recursos entre diferentes origens (Cross-Origin Resource Sharing)
-const helmet = require('helmet');
-// Importa o middleware de segurança que adiciona cabeçalhos HTTP para proteger contra ataques comuns
+const express = require("express");
+const cors = require("cors");
+const authRoute = require("./routes/authRoute");
+const publicRoute = require("./routes/publicRoute");
+const protectedRoute = require("./routes/protectedRoute");
+const helmet = require("helmet");
 const serverRoute = require("./routes/serverRoute");
-//Importa as rotas.
-const userRoutes = require('./routes/userRoute');
-// Importa as rotas relacionadas as tabelas usuários.
+const userRoute = require("./routes/userRoute");
 const profissionalRoute = require("./routes/profissionalRoute");
-// 
 const areaRoute = require("./routes/areaRoute");
-//
 const servicoRoute = require("./routes/servicoRoute");
-//
 const horarioTrabalhoRoute = require("./routes/horarioTrabalhoRoute");
-//
-
-//
-const errorMiddleware = require('./middlewares/errorMiddleware');
-// Importa o middleware para tratamento centralizado de erros
+const statusAgendamentoRoute = require("./routes/statusAgendamentoRoute");
+const agendamentoRoute = require("./routes/agendamentoRoute");
+const horarioBloqueadoRoute = require("./routes/horarioBloqueadoRoute");
+const errorMiddleware = require("./middlewares/errorMiddleware");
 const app = express();
 
-// Cria uma instância do aplicativo Express
-// Middlewares globais
 app.use(cors());
-// Habilita o CORS em todas as rotas da aplicação
 app.use(helmet());
-// Adiciona proteção automática contra vulnerabilidades HTTP
 app.use(express.json());
-// Permite que o servidor interprete requisições com corpo em formato JSON
-// Rotas da aplicação
 app.use("/", serverRoute);
-app.use('/users', userRoutes);
-// Define que todas as requisições iniciadas com /users serão encaminhadas para o arquivo userRoutes
-// Middleware de tratamento de erros (deve ser adicionado depois das rotas)
+app.use("/auth", authRoute);
+app.use("/public", publicRoute);
+app.use("/protected", protectedRoute);
+app.use("/users", userRoute);
 app.use("/profissionais", profissionalRoute);
 app.use("/areas", areaRoute);
 app.use("/servicos", servicoRoute);
 app.use("/servicos/:area_id", servicoRoute);
-app.use("/horarios", horarioTrabalhoRoute);
-
-/*
-implementação do bloqueio
-
-const bloqueioHorarioRoute = require("./routes/bloqueioHorarioRoute");
-app.use("/bloqueio", bloqueioHorarioRoute);
-*/
-
-
+app.use("/horarios_trabalho", horarioTrabalhoRoute);
+app.use("/status_agendamento", statusAgendamentoRoute);
+app.use("/status_agendamento/:id", statusAgendamentoRoute);
+app.use("/agendamentos", agendamentoRoute);
+app.use("/agendamentos/:status_id", agendamentoRoute);
+app.use("/agendamentos/:profissional_id", agendamentoRoute);
+app.use("/agendamentos/disponibilidade", agendamentoRoute);
+app.use("/horarios_bloqueados", horarioBloqueadoRoute);
 app.use(errorMiddleware);
-// Middleware que captura e trata erros, enviando respostas ao cliente
-module.exports = app;
-// Exporta a aplicação configurada para ser utilizada pelo servidor (server.js)
 
 module.exports = app;
-//

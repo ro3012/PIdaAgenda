@@ -1,0 +1,63 @@
+@BASE = http://localhost:3000
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiUm9iZXJ0byBBbG1laWRhIiwiZW1haWwiOiJyb2JlcnRvLmFkbWluQGVtYWlsLmNvbSIsInBlcmZpbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3ODc4NzAxODcsImV4cCI6MTc4Nzg3Mzc4N30.vC1aV3MiwsCsXpkX3ikpqPsJsyD_cnzzrFg4RcFZA_E
+
+### Login do novo usuário (pegar o token gerado abaixo)
+POST {{BASE}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@agendapi.com",
+    "senha_hash": "senha123"
+}
+
+### Listar todos os status de agendamento
+GET {{BASE}}/status_agendamento
+Authorization: Bearer {{TOKEN}}
+
+### Listar status de agendamento por ID
+GET {{BASE}}/status_agendamento/2
+Authorization: Bearer {{TOKEN}}
+
+### Criar um novo status de agendamento
+POST {{BASE}}/status_agendamento
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "nomeStatus": "Confirmado",
+    "descricaoStatus": "Agendamento confirmado pelo cliente"
+}
+
+### Criar um novo status de agendamento
+POST {{BASE}}/status_agendamento
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "nomeStatus": "Agendado",
+    "descricaoStatus": "Agendamento criado e aguardando confirmação"
+}
+
+### Criar um novo status de agendamento
+POST {{BASE}}/status_agendamento
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "nomeStatus": "Cancelado",
+    "descricaoStatus": "Agendamento cancelado pelo cliente"
+}
+
+### Atualizar um status de agendamento existente
+PUT {{BASE}}/status_agendamento/3
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "nomeStatus": "Cancelado",
+    "descricaoStatus": "Agendamento cancelado pelo profissional"
+}
+
+### Deletar um status de agendamento
+DELETE {{BASE}}/status_agendamento/3
+Authorization: Bearer {{TOKEN}}
